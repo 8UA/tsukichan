@@ -1,6 +1,7 @@
 # General channel settings
 site_name: "Tsuki Chan"
 description: "A simple image board engine."
+home_board: "b"
 allowed_file_types:
   - jpg
   - png
