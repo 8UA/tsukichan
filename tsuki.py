@@ -12,10 +12,16 @@ app.secret_key = secrets.token_hex(16)
 # TODO: Move configuration functions, database functions, etc... to their own files for more organization.
 
 def load_config():
+    global home_board, ip, port
     try:
         with open('config.yml', 'r') as file:
-            return yaml.safe_load(file)
-
+            config = yaml.safe_load(file)
+            # Load up binded board, ip and port from config file
+            # Defaults to hardcoded values if not set
+            home_board = config.get('home_board', 'b')
+            ip = config.get('ip', '127.0.0.1')
+            port = config.get('port', '5000')
+            return config
     except FileNotFoundError:
         print("Your config.yml file is missing.")
         return exit(1)
@@ -62,6 +68,11 @@ def create_database():
 
     else:
         print(f"Database file '{db_path}' already exists.")
+
+@app.route('/')
+def index():
+    # Redirect to /b/ board page (default)
+    return redirect(f'/board/{home_board}')
 
 @app.route('/new', methods=['POST'])
 def new_post():
@@ -172,16 +183,18 @@ def get_replies(post_id):
 
 @app.route('/board/<board_name>/')
 def get_root(board_name):
+    config = load_config()
     return render_template('board.html',
-        config=load_config(),
+        config=config,
         boards=get_boards(),
         current=get_board(board_name),
         posts=get_board_posts(board_name))
 
 @app.route('/board/<board_name>/thread/<post_id>')
 def get_thread(board_name, post_id):
+    config = load_config()
     return render_template('thread.html',
-        config=load_config(),
+        config=config,
         boards=get_boards(),
         current=get_board(board_name),
         op=get_post(post_id),
@@ -202,4 +215,4 @@ def get_image(image_name):
 
 if __name__ == '__main__':
     create_database()
-    app.run(debug=True)
+    app.run(host=ip, port=port ,debug=True)
