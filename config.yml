@@ -7,6 +7,10 @@ allowed_file_types:
   - webp
 theme: "tsuki-dark.css"
 
+# Server settings, for dev purposes leave these to default
+ip: "127.0.0.1"
+port: "5000"
+
 # Database settings, you probably don't need to touch these.
 database:
   type: "sqlite"
