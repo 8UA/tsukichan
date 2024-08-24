@@ -13,6 +13,7 @@
 	--post-header: rgba(0, 1, 4, .2);
 	--post-border: rgb(17, 21, 24);
 	--post-name: #d63e34;
+	--post-number: #d6cb34;
 
 	--link-color: #53bdb1;
 	--link-color-hover: #72e8da;
@@ -71,6 +72,10 @@ header>nav>a {
 	font-size: 16px;
 
 	color: var(--post-name);
+}
+
+.post-number {
+	color: var(--post-number)
 }
 
 .reply-container {

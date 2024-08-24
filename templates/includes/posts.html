@@ -1,23 +1,24 @@
 <main>
-	{% for post in posts %}
-		<hr>
-		<div class="post-container">
-			<div class="post-information">
-				<span class="post-name">{{ post[2] }}</span>
-				<span>{{ post[6] }}</span>
-				<span><a href="/board{{ current[1] }}thread/{{ post[0] }}">No. {{ post[0] }}</a></span>
-			</div>
+    {% for post in posts %}
+        <hr>
+        <div class="post-container">
+            <div class="post-information">
+                <span class="post-name">{{ post[2] }}</span>
+                <span>{{ post[6] }}</span>
+                <span class="post-number">No. {{ post[0] }}</span>
+                <span><a href="/board{{ current[1] }}thread/{{ post[0] }}">[Reply]</a></span>
+            </div>
 
-			<div>
-				File: <a href="/image/{{ post[5] }}">{{ post[5] }}</a>
-				<a href="">ImgOps</a>
-				<a href="">Yandex</a>
-				<a href="">Google</a>
-			</div>
-			<div class="post-contents">
-				<img src="/image/{{ post[5] }}" class="post-file" width="250px" alt="Original poster image">
-				{{ post[4] }}
-			</div>
-		</div>
+            <div>
+                    File: <a href="/image/{{ post[5] }}">{{ post[5] }}</a>
+                    <a href="">ImgOps</a>
+                    <a href="">Yandex</a>
+                    <a href="">Google</a>
+            </div>
+            <div class="post-contents">
+                <img src="/image/{{ post[5] }}" class="post-file" width="250px" alt="Original poster image">
+                {{ post[4] }}
+            </div>
+        </div>
     {% endfor %}
 </main>
