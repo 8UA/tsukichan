@@ -59,6 +59,8 @@ header>nav>a {
 .post-contents {
 	display: flex;
 	align-items: flex-start;
+	word-break: break-all;
+	white-space: pre-line;
 }
 
 .post-file {
